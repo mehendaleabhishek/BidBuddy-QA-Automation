@@ -1,0 +1,131 @@
+ID,Role,Description,Steps,Expected Results,Actual Results,Tester,Timestamp
+1,Prop Manager,Open Create New Property Modal,- Click '+ New Property' button on the Properties page,"- 'Create New Property' modal should open
+ - All fields should be empty
+ - 'Create Property' button should be disabled (greyed out)",,,
+2,Prop Manager,Close Modal via X Button,"- Open the Create New Property modal
+ - Click the '×' icon at the top right of the modal","- Modal should close
+ - User is returned to the Properties list
+ - No data should be saved",,,
+3,Prop Manager,Close Modal via Cancel Button,"- Open the Create New Property modal
+ - Fill in some fields
+ - Click the 'Cancel' button","- Modal should close
+ - No property should be created
+ - Previously entered data should be discarded",,,
+4,Prop Manager,Property Name – Valid Input,"- Open the modal
+ - Enter a valid name in 'Property Name or Identifier' (e.g. 'Sunset Apartments')",- Text should be accepted and displayed in the field,,,
+5,Prop Manager,Property Name – Empty (Required Field),"- Open the modal
+ - Leave 'Property Name or Identifier' blank
+ - Try to submit the form","- Validation error should appear on the field
+ - Form should not submit
+ - Field should be highlighted as required",,,
+6,Prop Manager,Property Name – Placeholder Text,"- Open the modal
+ - Observe the 'Property Name or Identifier' field without clicking it","- Placeholder text 'e.g., Sunset Apartments, Building A, Property ID: 12345' should be visible
+ - Helper text 'Enter a unique name or identifier for this property' should appear below",,,
+7,Prop Manager,Property Address – Valid Input,"- Open the modal
+ - Click 'Property Address' field
+ - Start typing an address (e.g. '3151 South Babcock')",- Address autocomplete suggestions should appear as user types,,,
+8,Prop Manager,Property Address – Empty (Required Field),"- Open the modal
+ - Leave 'Property Address' blank
+ - Attempt to submit","- Validation error should be shown
+ - Form should not submit",,,
+9,Prop Manager,City – Valid Input,"- Open the modal
+ - Enter a valid city name (e.g. 'Melbourne')",- Text should be accepted in the City field,,,
+10,Prop Manager,City – Empty (Required Field),"- Open the modal
+ - Leave City field blank
+ - Attempt to submit","- Validation error should be shown on City field
+ - Form should not submit",,,
+11,Prop Manager,State – Select from Dropdown,"- Open the modal
+ - Click the 'State' dropdown
+ - Select a state (e.g. 'FL')","- Selected state should appear in the dropdown
+ - Dropdown should list all valid US states",,,
+12,Prop Manager,State – Empty (Required Field),"- Open the modal
+ - Leave State dropdown unselected
+ - Attempt to submit","- Validation error should be shown on State field
+ - Form should not submit",,,
+13,Prop Manager,ZIP Code – Valid 5-digit Input,"- Open the modal
+ - Enter a valid ZIP code (e.g. '32901')",- ZIP code should be accepted,,,
+14,Prop Manager,ZIP Code – Invalid Format,"- Open the modal
+ - Enter an invalid ZIP code (e.g. 'ABCDE' or '123')","- Validation error should appear
+ - System should indicate ZIP must be numeric / correct format",,,
+15,Prop Manager,ZIP Code – Empty (Required Field),"- Open the modal
+ - Leave ZIP Code blank
+ - Attempt to submit","- Validation error should be shown
+ - Form should not submit",,,
+16,Prop Manager,Property Type – Select Valid Type,"- Open the modal
+ - Click 'Select Type' dropdown under Property Type
+ - Select a type (e.g. 'Apartment Complex')",- Selected type should appear in the dropdown field,,,
+17,Prop Manager,Property Type – Empty (Required Field),"- Open the modal
+ - Leave Property Type unselected
+ - Attempt to submit","- Validation error should appear on Property Type
+ - Form should not submit",,,
+18,Prop Manager,Property Type – Available Options,"- Open the modal
+ - Click 'Select Type' dropdown","- Dropdown should display all available property types (e.g. Apartment Complex, Commercial, etc.)",,,
+19,Prop Manager,Square Footage – Valid Numeric Input,"- Open the modal
+ - Enter a valid number in Square Footage (e.g. '25000')",- Number should be accepted in the field,,,
+20,Prop Manager,Square Footage – Non-Numeric Input,"- Open the modal
+ - Enter letters or special characters in Square Footage (e.g. 'abc')",- Field should reject non-numeric input OR show a validation error,,,
+21,Prop Manager,Square Footage – Optional Field,"- Open the modal
+ - Fill all required fields
+ - Leave Square Footage blank
+ - Submit",- Form should submit successfully without Square Footage,,,
+22,Prop Manager,Year Built – Valid 4-digit Year,"- Open the modal
+ - Enter a valid year in 'Year Built' field (e.g. '1998')",- Year should be accepted,,,
+23,Prop Manager,Year Built – Invalid Format,"- Open the modal
+ - Enter an invalid year (e.g. '99' or 'YYYY' literally or a future year like '2999')",- Validation error should appear indicating valid year format is required,,,
+24,Prop Manager,Year Built – Optional Field,"- Open the modal
+ - Fill all required fields
+ - Leave Year Built blank
+ - Submit",- Form should submit successfully without Year Built,,,
+25,Prop Manager,Notes – Enter Optional Text,"- Open the modal
+ - Click the Notes text area
+ - Enter additional notes",- Notes text area should accept free-form text input,,,
+26,Prop Manager,Notes – Leave Blank,"- Open the modal
+ - Fill all required fields
+ - Leave Notes blank
+ - Submit",- Form should submit successfully (Notes is optional),,,
+27,Prop Manager,Photos – Upload Valid Image,"- Open the modal
+ - In the PHOTOS section, click 'Click to upload or drag and drop'
+ - Select a valid PNG or JPG file under 10MB","- Image should be uploaded and previewed
+ - Upload confirmation should be shown",,,
+28,Prop Manager,Photos – Upload Invalid File Type,"- Open the modal
+ - Try to upload a file that is not PNG or JPG (e.g. a PDF or .gif)","- System should reject the file
+ - Error message should indicate only PNG/JPG are accepted",,,
+29,Prop Manager,Photos – Upload File Over 10MB,"- Open the modal
+ - Try to upload a PNG or JPG file larger than 10MB","- System should reject the file
+ - Error message should indicate the 10MB size limit",,,
+30,Prop Manager,Photos – Drag and Drop Upload,"- Open the modal
+ - Drag a valid PNG/JPG file and drop it onto the photo upload area",- File should be accepted and uploaded successfully,,,
+31,Prop Manager,Photos – Leave Empty (Optional),"- Open the modal
+ - Fill all required fields
+ - Do not upload any photos
+ - Submit","- Form should submit successfully
+ - Map image should be used as default per the helper text",,,
+32,Prop Manager,Documents – Upload Valid File,"- Open the modal
+ - In the DOCUMENTS section, click 'Click to upload documents'
+ - Select a valid PDF, DOC, or XLS file under 10MB",- Document should be uploaded successfully,,,
+33,Prop Manager,Documents – Upload Invalid File Type,"- Open the modal
+ - Try to upload an unsupported file type (e.g. .mp4 or .zip)","- System should reject the file
+ - Error should indicate only PDF, DOC, XLS are accepted",,,
+34,Prop Manager,Documents – Upload File Over 10MB,"- Open the modal
+ - Try to upload a document larger than 10MB","- System should reject the file
+ - Error message should indicate the 10MB limit",,,
+35,Prop Manager,Documents – Select Category,"- Open the modal
+ - Click the 'Category' dropdown in the DOCUMENTS section
+ - Select a different category","- Selected category should appear in the dropdown
+ - Helper text confirms 'Selected category is saved to the file metadata'",,,
+36,Prop Manager,Documents – Default Category is 'Other',"- Open the modal
+ - Observe the Category dropdown in the DOCUMENTS section without changing it",- Default value should be 'Other',,,
+37,Prop Manager,Submit Form – All Required Fields Filled,"- Open the modal
+ - Fill in: Property Name, Address, City, State, ZIP, Property Type
+ - Click 'Create Property'","- Property should be created successfully
+ - Modal should close
+ - New property should appear in the Properties list",,,
+38,Prop Manager,Submit Form – Missing One Required Field,"- Open the modal
+ - Fill all required fields except one (e.g. leave City blank)
+ - Click 'Create Property'","- Form should not submit
+ - The missing required field should show a validation error",,,
+39,Prop Manager,Create Property Button – Disabled State,"- Open the modal
+ - Do not fill any fields
+ - Observe the 'Create Property' button",- 'Create Property' button should be greyed out / disabled until required fields are filled,,,
+40,Prop Manager,Create Property Button – Enabled State,"- Open the modal
+ - Fill all required fields (Name, Address, City, State, ZIP, Property Type)",- 'Create Property' button should become active/clickable,,,

@@ -1,0 +1,17 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+.coverage
+playwright-report/
+test-results/
+screenshots/
+.auth/
+tests/fixtures/files/oversized_*
+tests/fixtures/files/valid_*
+tests/fixtures/files/invalid_*
