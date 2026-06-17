@@ -108,6 +108,22 @@ def pm_properties_list_page(
     return properties_page
 
 
+@pytest.fixture
+def existing_property_names(
+    pm_properties_list_page: PropertiesListPage,
+) -> list[str]:
+    """Names of properties currently on the list (skips if none exist)."""
+    names = pm_properties_list_page.get_property_names()
+    if not names:
+        pytest.skip("No properties on list page — seed data required for this test.")
+    return names
+
+
+@pytest.fixture
+def first_property_name(existing_property_names: list[str]) -> str:
+    return existing_property_names[0]
+
+
 # ---------------------------------------------------------------------------
 # Authenticated session fixtures (reusable across tests)
 # ---------------------------------------------------------------------------

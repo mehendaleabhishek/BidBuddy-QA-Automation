@@ -1,0 +1,33 @@
+ID,Role,Description,Steps,Expected Results,Actual Results,Tester,Timestamp
+1,Prop Manager,View Properties List Page,- Navigate to the Properties section from the left sidebar,"- Properties page should load
+- Page title 'Properties' is displayed
+- Breadcrumb shows: Dashboard • Properties • List",,,
+2,Prop Manager,Create New Property,- Click the '+ New Property' button on the top right,- A new property creation form/modal should open,,,
+3,Prop Manager,Search for a Property,"- Type a property name or address in the Search field
+","- Results should filter to show only matching properties
+- Non-matching properties should be hidden",,,
+4,Prop Manager,Search with No Match,- Type a string that matches no property (e.g. 'XYZABC') in Search field,"- No property cards should be shown
+-  An empty state or 'No results' message should appear",,,
+5,Prop Manager,Search with Empty Input,- Clear the search field or leave it empty,- All available properties should be displayed,,,
+6,Prop Manager,Sort By – Most Recent,"- Open the 'Sort By' dropdown
+- Select 'Most Recent'",- Properties should be sorted with the most recently added/modified first,,,
+7,Prop Manager,Sort By – Other Options,"- Open the 'Sort By' dropdown
+- Select each available option one by one",- Property list should re-order accordingly for each selection,,,
+8,Prop Manager,Change Density – Compact,"- Open the 'Density' dropdown
+- Select 'Compact'",- Property cards should display in a compact/condensed layout,,,
+9,Prop Manager,Change Density – Other Views,"- Open the 'Density' dropdown
+- Select other available density options",- Card layout should change to reflect the selected density,,,
+10,Prop Manager,Filter by Type,"- Open the 'Type' dropdown
+- Select a specific property type (e.g. 'Apartment Complex')",- Only properties matching that type should be shown,,,
+11,Prop Manager,Type Filter – All,"- Open the 'Type' dropdown
+- Select 'All'","- All properties should be displayed regardless of type
+- Count shown as 'All (1)' or matching total",,,
+12,Prop Manager,Property Card Displays Correct Info,- Observe the property card,"- Card should show:
+• Property image
+• Type tag (Apartment Complex)
+• Property name
+• Address (truncated if long)
+• Photo count
+• RFP count",,,
+13,Prop Manager,Click on a Property Card,- Click on any property card,- Should navigate to the property detail page,,,
+14,Prop Manager,Property with No Photos,- Observe the property card that shows 'No photos',- A placeholder or default image should display,,,
