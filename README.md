@@ -245,6 +245,10 @@ To be filled in by the team:
 App URL: https://dev.bidbuddy.com/auth/sign-in?returnTo=%2Fproperty-manager%2Fproperties
 How to switch teams: Click the team name/dropdown at the top of the sidebar
 
+Local credentials: copy `.env.example` to `.env` and fill in test accounts (never commit `.env`).
+
+CI/CD: see [docs/ci.md](docs/ci.md) for GitHub Actions setup (smoke on PR, regression on schedule/manual).
+
 
 Tips for Effective Testing
 Always test both sides — Log in as a PM and as a Vendor to see both perspectives of the same action

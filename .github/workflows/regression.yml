@@ -1,0 +1,86 @@
+# Full regression suite — manual trigger or nightly schedule.
+name: Regression
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_path:
+        description: Pytest path or marker expression
+        required: false
+        default: "-m regression"
+  schedule:
+    # Monday 06:00 UTC
+    - cron: "0 6 * * 1"
+
+concurrency:
+  group: regression-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    name: Regression tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    env:
+      CI: true
+      HEADLESS: true
+      SLOW_MO_MS: 0
+      BASE_URL: https://dev.bidbuddy.com
+      DEFAULT_TIMEOUT_MS: 30000
+      PM_EMAIL: ${{ secrets.PM_EMAIL }}
+      PM_PASSWORD: ${{ secrets.PM_PASSWORD }}
+      VENDOR_EMAIL: ${{ secrets.VENDOR_EMAIL }}
+      VENDOR_PASSWORD: ${{ secrets.VENDOR_PASSWORD }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Install Playwright browsers
+        run: playwright install --with-deps chromium
+
+      - name: Apply optional repository variables
+        run: |
+          if [ -n "${{ vars.BASE_URL }}" ]; then
+            echo "BASE_URL=${{ vars.BASE_URL }}" >> "$GITHUB_ENV"
+          fi
+
+      - name: Validate PM credentials
+        run: |
+          if [ -z "$PM_EMAIL" ] || [ -z "$PM_PASSWORD" ]; then
+            echo "::error::Repository secrets PM_EMAIL and PM_PASSWORD are required."
+            exit 1
+          fi
+
+      - name: Run regression tests
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            pytest ${{ inputs.test_path }} -v --tb=short
+          else
+            pytest -m regression -v --tb=short
+          fi
+
+      - name: Upload failure screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: regression-screenshots-${{ github.run_id }}
+          path: screenshots/
+          retention-days: 14
+          if-no-files-found: ignore

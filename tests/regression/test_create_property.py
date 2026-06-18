@@ -9,6 +9,7 @@ import pytest
 from pages.property_manager.properties_list_page import PropertiesListPage
 
 
+@pytest.mark.smoke
 @pytest.mark.regression
 @pytest.mark.property_manager
 @pytest.mark.create_property
